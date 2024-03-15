@@ -1,3 +1,4 @@
+import { Input } from "../atoms/Input";
 import { PrimaryBtn } from "../atoms/PrimaryBtn";
 
 export const LoginPage = () => {
@@ -8,18 +9,10 @@ export const LoginPage = () => {
           ログイン
         </h1>
         <div className="w-[80%]">
-          <input
-            type="text"
-            placeholder="email"
-            className="w-full border-4 border-solid border-lime-800 rounded-md p-2"
-          />
+          <Input type="text" placeholder="email" />
         </div>
         <div className="w-[80%]">
-          <input
-            type="password"
-            placeholder="password"
-            className="w-full border-4 border-solid border-lime-800 rounded-md p-2"
-          />
+          <Input type="password" placeholder="password" />
         </div>
         <PrimaryBtn>ログイン</PrimaryBtn>
       </form>
