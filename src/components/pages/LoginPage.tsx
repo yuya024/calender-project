@@ -3,8 +3,14 @@ import { Input } from "../atoms/Input";
 import { PrimaryBtn } from "../atoms/PrimaryBtn";
 import { LoginInfoType } from "../../types/login";
 import { login } from "../../api/login";
+import { useSetRecoilState } from "recoil";
+import { loginUserState } from "../../store/loginUserState";
+import { useNavigate } from "react-router-dom";
 
 export const LoginPage = () => {
+  const navigate = useNavigate();
+  const setLoginUser = useSetRecoilState(loginUserState);
+
   const [errorMessage, setErrorMessage] = useState("");
   const [loginInfo, setLoginInfo] = useState<LoginInfoType>({
     email: "",
@@ -20,7 +26,9 @@ export const LoginPage = () => {
     event.preventDefault();
     setErrorMessage("");
     try {
-      login(loginInfo);
+      const resUser = login(loginInfo);
+      setLoginUser({ id: resUser.id, name: resUser.name });
+      navigate("/calendar");
     } catch {
       setErrorMessage("ログインに失敗しました");
     }
